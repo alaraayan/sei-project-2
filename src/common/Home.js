@@ -20,7 +20,7 @@ function Home() {
       <section className="hero is-fullwidth-with-navbar is-halfheight is-info">
         <div className="hero-body">
           <div className="container">
-            <h1 className="title is-1 has-text-centered">JEOPARDY</h1>
+            <h1 className="title is-1 has-text-centered">TRIVIAL PURSUIT</h1>
           </div>
         </div>
       </section>
