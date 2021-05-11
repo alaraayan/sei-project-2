@@ -2,9 +2,9 @@ import { useLocation } from 'react-router-dom'
 
 function ResultDisplay(result) {
   const location = useLocation()
-  console.log(location.state.score)
+  const finalResult = location.state.score
   return (
-    <h1>Hello!</h1>
+    <h1 className="result-show">You scored {finalResult} out of 10</h1>
   )
 }
 
