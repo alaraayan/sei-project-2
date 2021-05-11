@@ -12,6 +12,11 @@ function MusicGame() {
     return question.correct_answer
   })
 
+  const quoestionsAndCorrectAnswers = questions?.results.reduce((acc, cur) => ({
+    ...acc, 
+    [cur.question]: cur.correct_answer, 
+  }), {})
+
   React.useEffect(() => {
     const getData = async () => {
       const response = await getMusicGame()
@@ -40,7 +45,7 @@ function MusicGame() {
 
   function handleResults(e) {
     e.preventDefault()
-    history.push('/results', { score: answers.length })
+    history.push('/results', { score: answers.length, answers: quoestionsAndCorrectAnswers })
   }
 
   

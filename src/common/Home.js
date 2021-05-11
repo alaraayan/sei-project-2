@@ -32,16 +32,6 @@ function Home() {
               onSubmit={handleSubmit}
             >
               <div className="field">
-                <label className="label">Username</label>
-                <div className="control">
-                  <input
-                    className="input is-warning"
-                    placeholder="Type Username"
-                    name="name"                   
-                  />
-                </div>
-              </div>
-              <div className="field">
                 <label className="control label">Game Category</label>
                 <select className="drop-down input is-primary" name="input" onChange={handleSelected}>
                   <option selected disabled>Select a game category</option>

@@ -12,6 +12,11 @@ function CelebritiesGame() {
     return question.correct_answer
   })
 
+  const quoestionsAndCorrectAnswers = questions?.results.reduce((acc, cur) => ({
+    ...acc, 
+    [cur.question]: cur.correct_answer, 
+  }), {})
+
   React.useEffect(() => {
     const getData = async () => {
       const response = await getCelebritiesGame()
@@ -36,11 +41,11 @@ function CelebritiesGame() {
       setAnswers(answers.filter(answer => answer !== correctAnswer))
     }
   }
-
+  
 
   function handleResults(e) {
     e.preventDefault()
-    history.push('/results', { score: answers.length })
+    history.push('/results', { score: answers.length, answers: quoestionsAndCorrectAnswers })
   }
 
   
@@ -64,7 +69,8 @@ function CelebritiesGame() {
                 questions.results.map(question => ( 
                   <div className="question" key={question.correct_answer}>
                     <div className="field" >
-                      <h2 dangerouslySetInnerHTML={ { __html: question.question } }>
+                      <h2 
+                        dangerouslySetInnerHTML={ { __html: question.question } }>
                       </h2>
                     </div>
                     <div className="control">
