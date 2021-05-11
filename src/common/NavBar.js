@@ -7,8 +7,8 @@ function NavBar() {
     <nav className="navbar is-info">
       <div className="container">
         <div className="navbar-brand">
-          <Link to="/" className="navbar-item navbar-start">
-            🏠
+          <Link to="/" className="navbar-item navbar-end">
+            <h1>Take Me 🏠</h1>
           </Link>
         </div>
       </div>

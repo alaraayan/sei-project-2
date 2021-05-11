@@ -1,10 +1,19 @@
+import React from 'react'
 import { useHistory } from 'react-router-dom'
 
 function Home() {
   const history = useHistory()
+
+  const [game, setGame] = React.useState(null)
+
   const handleSubmit = async (e) => {
     e.preventDefault()
-    history.push('/generalgame')
+    history.push(`/${game}`)
+  }
+
+  function handleSelected(e) {
+    const selectedOption = e.target.value
+    setGame(selectedOption)
   }
   return ( 
     <div className="home-body">
@@ -34,10 +43,16 @@ function Home() {
               </div>
               <div className="field">
                 <label className="control label">Game Category</label>
-                <select className="drop-down input is-primary" name="input">
-                  <option value="game-category">Select a game category</option>
-                  <option value="GK">General Knowledge</option>
-                  <option value="sports">sports</option>
+                <select className="drop-down input is-primary" name="input" onChange={handleSelected}>
+                  <option selected disabled>Select a game category</option>
+                  <option value="sports" >Sports</option>
+                  <option value="generalknowledge" >General Knowledge</option>
+                  <option value="books" >Books</option>
+                  <option value="celebrities" >Celebrities</option>
+                  <option value="movies" >Movies</option>
+                  <option value="music" >Music</option>
+                  <option value="history" >History</option>
+                  <option value="scienceandnature" >ScienceAndNature</option>
                 </select>
               </div>
               <div className="field">

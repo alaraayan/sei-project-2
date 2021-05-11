@@ -3,8 +3,15 @@ body {
 }
 
 div.navbar-brand {
-  background-color: hsl(141, 53%, 53%);
+  border: hsl(141, 53%, 53%) 1px solid;
+  border-radius: 5px;
+  margin: 5px 0px;
+  
+    &:hover{
+      background: hsl(141, 53%, 53%);
+    }
 }
+
 h1 {
   font-family: 'Frijole', cursive;
   text-align: center;
@@ -32,4 +39,7 @@ label {
   }
 }
 
+.result{
+  margin: 5px;
+}
 @import '~bulma/bulma.sass';
