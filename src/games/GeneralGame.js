@@ -97,7 +97,7 @@ function GeneralGame() {
                           type="radio" 
                           name={question.question}
                         /> 
-                        <p dangerouslySetInnerHTML = {{__html: question.correct_answer}}></p>
+                        <p dangerouslySetInnerHTML = { { __html: question.correct_answer } }></p>
                       </label>
                       <label className="radio" onClick={handleWrongAnswer}>
                         <input 
@@ -105,7 +105,7 @@ function GeneralGame() {
                           data-answer={question.correct_answer}
                           name={question.question}
                         />
-                        <p dangerouslySetInnerHTML = {{__html: question.incorrect_answers[0]}}></p>
+                        <p dangerouslySetInnerHTML = { { __html: question.incorrect_answers[0] } }></p>
                       </label>
                       <label className="radio" onClick={handleWrongAnswer}>
                         <input 
@@ -113,7 +113,7 @@ function GeneralGame() {
                           data-answer={question.correct_answer}
                           name={question.question}
                         /> 
-                        <p dangerouslySetInnerHTML = {{__html: question.incorrect_answers[1]}}></p>
+                        <p dangerouslySetInnerHTML = { { __html: question.incorrect_answers[1] } }></p>
                       </label>
                       <label className="radio" onClick={handleWrongAnswer}>
                         <input 
@@ -121,7 +121,7 @@ function GeneralGame() {
                           data-answer={question.correct_answer}
                           name={question.question}
                         />
-                        <p dangerouslySetInnerHTML = {{__html: question.incorrect_answers[2]}}></p>
+                        <p dangerouslySetInnerHTML = { { __html: question.incorrect_answers[2] } }></p>
                       </label>
                     </div>
                   </div>
