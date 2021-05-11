@@ -49,4 +49,12 @@ label {
   margin: 5px;
   font-size: 50px;
 }
+
+ul {
+  border-bottom: black 1px solid;
+}
+
+ul h6 {
+  font-weight:bold;
+}
 @import '~bulma/bulma.sass';
