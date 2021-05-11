@@ -7,11 +7,11 @@ function Home() {
     history.push('/generalgame')
   }
   return ( 
-    <>
-      <section className="hero is-fullheight-with-navbar is-info">
+    <div className="home-body">
+      <section className="hero is-fullwidth-with-navbar is-halfheight is-info">
         <div className="hero-body">
           <div className="container">
-            <h1>JEOPARDY</h1>
+            <h1 className="title is-1 has-text-centered">JEOPARDY</h1>
           </div>
         </div>
       </section>
@@ -22,24 +22,24 @@ function Home() {
               className="column is-half is-offset-one-quarter box"
               onSubmit={handleSubmit}
             >
-              
-
               <div className="field">
                 <label className="label">Username</label>
                 <div className="control">
                   <input
-                    className="input"
-                    placeholder="Username"
-                    name="name"
-                    
+                    className="input is-warning"
+                    placeholder="Type Username"
+                    name="name"                   
                   />
                 </div>
               </div>
-              <label htmlFor="categories">choose a Category</label>
-              <select name="categories" id="categoris">
-                <option value="GK">General Knowledge</option>
-                <option value="sports">sports</option>
-              </select>
+              <div className="field">
+                <label className="control label">Game Category</label>
+                <select className="drop-down input is-primary" name="input">
+                  <option value="game-category">Select a game category</option>
+                  <option value="GK">General Knowledge</option>
+                  <option value="sports">sports</option>
+                </select>
+              </div>
               <div className="field">
                 <button type="submit" className="button is-danger is-fullwidth">
                   LET&apos;S PLAY!
@@ -49,7 +49,7 @@ function Home() {
           </div>
         </div>
       </section>
-    </>
+    </div>
   )
 }
 

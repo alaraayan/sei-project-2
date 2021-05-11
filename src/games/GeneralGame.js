@@ -1,11 +1,23 @@
 
 import React from 'react'
+import ResultDisplay from '../common/ResultDisplay'
 import { getGeneralKnowledgeGame } from '../lib/api'
+import { useHistory } from 'react-router-dom'
+
 
 
 function GeneralGame() {
+  const history = useHistory()
   const [questions, setQuestions] = React.useState(null)
+  const [answers, setAnswers] = React.useState([])
+  const correctAnswers = questions?.results.map(question => {
+    return question.correct_answer
+  })
 
+  // const obj = correctAnswers.reduce((acc, cur, i) => ({ ...acc, [i+1]: cur}), {})
+  
+  
+  // const [isSelected, setIsSelected] = React.useState(false)
   React.useEffect(() => {
     const getData = async () => {
       const response = await getGeneralKnowledgeGame()
@@ -16,81 +28,125 @@ function GeneralGame() {
     
   }, [])
 
-  function handleClick(e) {
+  function handleCorrectAnswer(e) {
     const choice = e.target.innerHTML
-    const correctAnswers = questions.results.map(question => {
-      return question.correct_answer
-    })
+    // setIsSelected(!isSelected)
+    
+    if (correctAnswers.includes(choice) && (!answers.includes(choice))) {
+      setAnswers([...answers, choice])
+      console.log(answers, 'WE DID IT')
+    } 
+    console.log('am i rendering too much?')
+  }
 
-    if (correctAnswers.includes(choice)) {
-      console.log('WE DID IT')
-    } else {
-      console.log('wrong choice')
+  function handleWrongAnswer(e) {
+    const correctAnswer = e.target.dataset.answer
+    if (answers.includes(correctAnswer)) {
+      console.log('in answers')
+      setAnswers(answers.filter(answer => answer !== correctAnswer))
     }
+    // const index = answers.findIndex((a) => a === correctAnswer)
+    // if (index !== -1) {
+    //   answers.splice(index, 1)
+    // }
+    // if (answers.includes(question.correct_answer)) {
+    //   answers.push(choice)
+    //   console.log(answers, 'WE DID IT')
+    // } 
+    console.log('chose wrong')
   }
 
 
+  function handleResults(e) {
+    e.preventDefault()
+    // const result = answers.length
+    // ResultDisplay(result)
+    // history.push('/results')
+    console.log('getting the results')
+    history.push('/results', { score: answers.length })
+    console.log(answers.length)
+  }
+
   
-  return (
+  
+  return (  
     <>
-      <section className="section">
-        <div className="container">
-          <div className="rows">
-            {questions ? 
-              questions.results.map(question => (
-                <div key={question.correct_answer}>
-                  <h2 dangerouslySetInnerHTML={ { __html: question.question } }></h2>
-                  <button dangerouslySetInnerHTML={ { __html: question.correct_answer } } onClick={handleClick}></button>
-                  <button dangerouslySetInnerHTML={ { __html: question.incorrect_answers[0] } } onClick={handleClick}></button>
-                  <button dangerouslySetInnerHTML={ { __html: question.incorrect_answers[1] } } onClick={handleClick}></button>
-                  <button dangerouslySetInnerHTML={ { __html: question.incorrect_answers[2] } } onClick={handleClick}></button>
-                </div>
-              ))
-              : 
-              <p>...loading</p>
-            }
+      <section className="hero is-small-with-navbar is-info">
+        <div className="hero-body">
+          <div className="container">
+            <h1 className="title is-1 has-text-centered">GENERAL KNOWLEDGE</h1>
           </div>
         </div>
       </section>
-      
-      
-
-    </>
+      <section className="section">
+        <div className="container">
+          <div className="rows"> 
+            <form
+              onSubmit={handleResults}
+            >
+              {questions ? 
+                questions.results.map(question => ( 
+                  <div className="question" key={question.correct_answer}>
+                    <div className="field" >
+                      <h2 dangerouslySetInnerHTML={ { __html: question.question } }>
+                      </h2>
+                    </div>
+                    <div className="control">
+                      <label className="radio" onClick={handleCorrectAnswer}>
+                        <input 
+                          type="radio" 
+                          name={question.question}
+                        /> 
+                        <p dangerouslySetInnerHTML = {{__html: question.correct_answer}}></p>
+                      </label>
+                      <label className="radio" onClick={handleWrongAnswer}>
+                        <input 
+                          type="radio" 
+                          data-answer={question.correct_answer}
+                          name={question.question}
+                        />
+                        <p dangerouslySetInnerHTML = {{__html: question.incorrect_answers[0]}}></p>
+                      </label>
+                      <label className="radio" onClick={handleWrongAnswer}>
+                        <input 
+                          type="radio" 
+                          data-answer={question.correct_answer}
+                          name={question.question}
+                        /> 
+                        <p dangerouslySetInnerHTML = {{__html: question.incorrect_answers[1]}}></p>
+                      </label>
+                      <label className="radio" onClick={handleWrongAnswer}>
+                        <input 
+                          type="radio" 
+                          data-answer={question.correct_answer}
+                          name={question.question}
+                        />
+                        <p dangerouslySetInnerHTML = {{__html: question.incorrect_answers[2]}}></p>
+                      </label>
+                    </div>
+                  </div>
+                ))
+                : 
+                <p>...loading</p>
+              }
+              <div className="field">
+                <button type="submit" className="button is-fullwidth is-danger">
+                Show My Score!
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>  
+    </>        
   )
 }
   
 export default GeneralGame
 
 
-///////
-
-// import { Link } from 'react-router-dom'
-
-// function CheeseCard({ _id, name, image, origin }) {
-//   return (
-//     <div className="column is-one-quarter-desktop is-one-third-tablet">
-//       <Link to={`/cheeses/${_id}`}>
-//         <div className="card">
-//           <div className="card-header">
-//             <div className="card-header-title">{name}</div>
-//           </div>
-//           <div className="card-image">
-//             <figure className="image image-is-1by1">
-//               <img src={image} alt={name} />
-//             </figure>
-//           </div>
-//           <div className="card-content">
-//             <h5>{origin}</h5>
-//           </div>
-//         </div>
-//       </Link>
-//     </div>
-//   )
-// }
-
-// export default CheeseCard
 
 
-// const handleChange = event => {
-//   setFormdata({ ...formdata, [event.target.name]: event.target.value })
-// }
+
+
+

@@ -1,3 +1,35 @@
+body {
+  min-height: 100vh;
+}
 
+div.navbar-brand {
+  background-color: hsl(141, 53%, 53%);
+}
+h1 {
+  font-family: 'Frijole', cursive;
+  text-align: center;
+  font-size: 8px;
+}
+
+.question {
+  margin-bottom: 20px;
+  border: black 1px solid;
+  border-radius: 5px;
+  padding: 10px;
+  
+  h2{
+    font-weight:bold;
+  }
+}
+
+label {
+  .radio {
+    display: block;
+  }
+
+  p {
+    display: inline;
+  }
+}
 
 @import '~bulma/bulma.sass';
