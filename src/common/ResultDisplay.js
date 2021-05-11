@@ -15,17 +15,21 @@ function ResultDisplay() {
   } 
 
   return (
-    <div className="field">
-      <h1 className="result">You scored {finalResult} out of 10</h1>
-      <div className="control">
-        <button type="submit" className="button is-halfwidth is-primary result" onClick={handleReplay}>
+    <div className="container">
+      <div className="columns"></div>
+      <div className="field-result">
+        <h1 className="result">You scored {finalResult} out of 10</h1>
+        <div className="buttons">
+          <button type="submit" className="button is-primary result is-fullwidth is-hovered" onClick={handleReplay}>
           Have Another Go
-        </button>
-        <button type="submit" className="button is-halfwidth is-danger result" onClick={handleGoHome}>
-          Play Different Game
-        </button>
+          </button>
+          <button type="submit" className="button is-fullwidth is-danger result is-hovered" onClick={handleGoHome}>
+          Play A Different Game
+          </button>
+        </div>
       </div>
     </div>
+    
   )
 }
 

@@ -6,10 +6,6 @@ div.navbar-brand {
   border: hsl(141, 53%, 53%) 1px solid;
   border-radius: 5px;
   margin: 5px 0px;
-  
-    &:hover{
-      background: hsl(141, 53%, 53%);
-    }
 }
 
 h1 {
@@ -29,6 +25,16 @@ h1 {
   }
 }
 
+div.field-result {
+  padding-top: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.buttons{
+  max-width: 50%;
+  
+}
 label {
   .radio {
     display: block;
@@ -41,5 +47,6 @@ label {
 
 .result{
   margin: 5px;
+  font-size: 50px;
 }
 @import '~bulma/bulma.sass';

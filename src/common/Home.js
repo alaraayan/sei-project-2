@@ -45,14 +45,14 @@ function Home() {
                 <label className="control label">Game Category</label>
                 <select className="drop-down input is-primary" name="input" onChange={handleSelected}>
                   <option selected disabled>Select a game category</option>
-                  <option value="sports" >Sports</option>
-                  <option value="generalknowledge" >General Knowledge</option>
                   <option value="books" >Books</option>
                   <option value="celebrities" >Celebrities</option>
+                  <option value="generalknowledge" >General Knowledge</option>
+                  <option value="history" >History</option>
                   <option value="movies" >Movies</option>
                   <option value="music" >Music</option>
-                  <option value="history" >History</option>
                   <option value="scienceandnature" >ScienceAndNature</option>
+                  <option value="sports" >Sports</option>
                 </select>
               </div>
               <div className="field">
