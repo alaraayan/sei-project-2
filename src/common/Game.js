@@ -18,7 +18,9 @@ function ArtGame() {
     return category.name === gameCategory
   })
 
-  const gameId = currentGameCategory[0].id
+  console.log(currentGameCategory)
+
+  const gameId = currentGameCategory[0]?.id
 
   const quoestionsAndCorrectAnswers = questions?.results.reduce((acc, cur) => ({
     ...acc, 
@@ -51,7 +53,7 @@ function ArtGame() {
 
   function handleResults(e) {
     e.preventDefault()
-    history.push('/results', { score: answers.length, answers: quoestionsAndCorrectAnswers })
+    history.push(`/${gameCategory}/result`, { score: answers.length, answers: quoestionsAndCorrectAnswers })
   }
 
   return (  

@@ -12,8 +12,9 @@ function App() {
       <NavBar/>
       <Switch>
         <Route exact path="/" component={Home}/>
+        <Route path="/:gameCategory/result" component={ResultDisplay}/>
         <Route path="/:gameCategory" component={Game}/>
-        <Route path="/results" component={ResultDisplay}/>
+
       </Switch>
     </Router>)
 
