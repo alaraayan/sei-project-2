@@ -1,31 +1,38 @@
 import React from 'react'
-import { getCelebritiesGame } from '../lib/api'
-import { useHistory } from 'react-router-dom'
+import { getBooksGame } from '../lib/api'
+import { useHistory, useParams } from 'react-router-dom'
 
 
-
-function CelebritiesGame() {
+function ArtGame() {
   const history = useHistory()
+  const { gameCategory } = useParams()
   const [questions, setQuestions] = React.useState(null)
   const [answers, setAnswers] = React.useState([])
   const correctAnswers = questions?.results.map(question => {
     return question.correct_answer
   })
+  const gameCategories = [{ name: 'books',
+    id: 10 }, { name: 'generalknowledge', id: 9 }, { name: 'sports', id: 21 }, { name: 'movies', id: 11 }, { name: 'music', id: 12 }, { name: 'celebrities', id: 26 }, { name: 'history', id: 23 }, { name: 'scienceandnature', id: 17 }]
+
+  const currentGameCategory = gameCategories.filter( category => {
+    return category.name === gameCategory
+  })
+
+  const gameId = currentGameCategory[0].id
 
   const quoestionsAndCorrectAnswers = questions?.results.reduce((acc, cur) => ({
     ...acc, 
     [cur.question]: cur.correct_answer, 
   }), {})
-
+  
   React.useEffect(() => {
     const getData = async () => {
-      const response = await getCelebritiesGame()
+      const response = await getBooksGame(gameId)
       setQuestions(response.data)
-      
     }
     getData()
     
-  }, [])
+  }, [gameId])
 
   function handleCorrectAnswer(e) {
     const choice = e.target.innerHTML
@@ -41,21 +48,18 @@ function CelebritiesGame() {
       setAnswers(answers.filter(answer => answer !== correctAnswer))
     }
   }
-  
 
   function handleResults(e) {
     e.preventDefault()
     history.push('/results', { score: answers.length, answers: quoestionsAndCorrectAnswers })
   }
 
-  
-  
   return (  
     <>
       <section className="hero is-small-with-navbar is-info">
         <div className="hero-body">
           <div className="container">
-            <h1 className="title is-1 has-text-centered">CELEBRITIES</h1>
+            <h1 className="title is-1 has-text-centered">{gameCategory}</h1>
           </div>
         </div>
       </section>
@@ -69,8 +73,7 @@ function CelebritiesGame() {
                 questions.results.map(question => ( 
                   <div className="question" key={question.correct_answer}>
                     <div className="field" >
-                      <h2 
-                        dangerouslySetInnerHTML={ { __html: question.question } }>
+                      <h2 dangerouslySetInnerHTML={ { __html: question.question } }>
                       </h2>
                     </div>
                     <div className="control">
@@ -124,4 +127,4 @@ function CelebritiesGame() {
   )
 }
   
-export default CelebritiesGame
+export default ArtGame
