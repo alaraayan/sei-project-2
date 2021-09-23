@@ -5,7 +5,6 @@ function Home() {
   const history = useHistory()
 
   const [game, setGame] = React.useState('Select a game category')
-  console.log(game)
   const handleSubmit = async (e) => {
     e.preventDefault()
     history.push(`/${game}`)
