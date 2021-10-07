@@ -4,16 +4,22 @@ import { useHistory, useParams } from 'react-router-dom'
 
 
 function Game() {
+  console.count('render')
   const history = useHistory()
   const { gameCategory } = useParams()
-  const [questions, setQuestions] = React.useState(null)
-  const [answers, setAnswers] = React.useState([])
-  const correctAnswers = questions?.map(question => {
-    return question.correct_answer
-  })
+  const [questions, setQuestions] = React.useState([])
+  const [answers, setAnswers] = React.useState({})
   //Category ID options for the axios request
-  const gameCategories = [{ name: 'books',
-    id: 10 }, { name: 'generalknowledge', id: 9 }, { name: 'sports', id: 21 }, { name: 'movies', id: 11 }, { name: 'music', id: 12 }, { name: 'celebrities', id: 26 }, { name: 'history', id: 23 }, { name: 'scienceandnature', id: 17 }]
+  const gameCategories = [
+    { name: 'books', id: 10 }, 
+    { name: 'generalknowledge', id: 9 }, 
+    { name: 'sports', id: 21 }, 
+    { name: 'movies', id: 11 }, 
+    { name: 'music', id: 12 }, 
+    { name: 'celebrities', id: 26 }, 
+    { name: 'history', id: 23 }, 
+    { name: 'scienceandnature', id: 17 }
+  ]
   //Getting the current game category
   const currentGameCategory = gameCategories.filter( category => {
     return category.name === gameCategory
@@ -21,10 +27,13 @@ function Game() {
   //Getting the current game category ID for the axios request
   const gameId = currentGameCategory[0]?.id
 
+  //Questions and correct answers to compare and get a score in the end + pass as props and display in the Result page
   const quoestionsAndCorrectAnswers = questions?.reduce((acc, cur) => ({
     ...acc, 
     [cur.question]: cur.correct_answer, 
   }), {})
+
+
   
   React.useEffect(() => {
     const getData = async () => {
@@ -41,31 +50,18 @@ function Game() {
       })
       setQuestions(questionsToDisplay)
     }
-    getData()
     
+    getData()
   }, [gameId])
 
+
   function handleAnswer(e) {
-    const correctAnswer = e.target.name
-    if (answers.includes(correctAnswer)) {
-      setAnswers(answers.filter(answer => answer !== correctAnswer))
-    } else {
-      handleCorrectAnswer(e)
-    }
+    setAnswers({ ...answers, [e.target.name]: e.target.value })
   }
-
-
-  function handleCorrectAnswer(e) {
-    
-    const choice = e.target.innerHTML
-    if (correctAnswers.includes(choice) && (!answers.includes(choice))) {
-      setAnswers([...answers, choice])
-    } 
-  }
-
+  
   function handleResults(e) {
     e.preventDefault()
-    history.push(`/${gameCategory}/result`, { score: answers.length, answers: quoestionsAndCorrectAnswers })
+    history.push(`/${gameCategory}/result`, { score: 0, answers: quoestionsAndCorrectAnswers })
   }
 
   return (  
@@ -83,7 +79,7 @@ function Game() {
             <form
               onSubmit={handleResults}
             >
-              {questions && 
+              {questions.length > 0 && 
                 questions.map(question => ( 
                   <div className="question" key={question.correct_answer}>
                     <div className="field" >
@@ -91,11 +87,13 @@ function Game() {
                       </h2>
                     </div>
                     <div className="control">
-                      {question.allAnswers.map(option =>{
-                        return <label className="radio" onClick={handleAnswer} key={option}>
+                      {question.allAnswers.map((option) =>{
+                        return <label className="radio" key={option}>
                           <input 
                             type="radio" 
-                            name={question.correct_answer}
+                            value={option}
+                            name={question.question}
+                            onClick={handleAnswer}
                           />
                           <p dangerouslySetInnerHTML = { { __html: option } }></p>
                         </label>
