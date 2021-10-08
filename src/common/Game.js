@@ -4,7 +4,6 @@ import { useHistory, useParams } from 'react-router-dom'
 
 
 function Game() {
-  console.count('render')
   const history = useHistory()
   const { gameCategory } = useParams()
   const [questions, setQuestions] = React.useState([])
@@ -61,7 +60,18 @@ function Game() {
   
   function handleResults(e) {
     e.preventDefault()
-    history.push(`/${gameCategory}/result`, { score: 0, answers: quoestionsAndCorrectAnswers })
+    //Converting the answers and quoestionsAndCorrectAnswers objects into arrays so we can check the final score
+    const finalAnswersToCheck = Object.entries(answers).map(answer => {
+      return answer[1]
+    })
+    const correctAnswers = Object.entries(quoestionsAndCorrectAnswers).map(correctAnswer => {
+      return correctAnswer[1]
+    })
+    //Final score check
+    const userScore = correctAnswers.filter(correctAnswer => {
+      return finalAnswersToCheck.includes(correctAnswer)
+    }) 
+    history.push(`/${gameCategory}/result`, { score: userScore.length, answers: quoestionsAndCorrectAnswers })
   }
 
   return (  

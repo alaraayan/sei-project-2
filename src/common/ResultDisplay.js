@@ -2,7 +2,8 @@ import { useLocation, useHistory } from 'react-router-dom'
 
 function ResultDisplay() {
   const location = useLocation()
-  const finalResult = location.state.score
+  //Getting the score + questions and correct answers to display
+  const score = location.state.score
   const answers = location.state.answers
   const history = useHistory()
   
@@ -19,7 +20,7 @@ function ResultDisplay() {
     <div className="container">
       <div className="columns"></div>
       <div className="field-result">
-        <h1 className="result">You scored {finalResult} out of 10</h1>
+        <h1 className="result">You scored {score} out of 10</h1>
         
         <div className="buttons">
           <button type="submit" className="button is-warning result is-fullwidth is-hovered" onClick={handleReplay}>
