@@ -36,11 +36,11 @@ function Home() {
                     <option disabled>Select a game category</option>
                     <option value="books" >Books</option>
                     <option value="celebrities" >Celebrities</option>
-                    <option value="generalknowledge" >General Knowledge</option>
+                    <option value="general knowledge" >General Knowledge</option>
                     <option value="history" >History</option>
                     <option value="movies" >Movies</option>
                     <option value="music" >Music</option>
-                    <option value="scienceandnature" >Science And Nature</option>
+                    <option value="science and nature" >Science And Nature</option>
                     <option value="sports" >Sports</option>
                   </select>
                 </label>

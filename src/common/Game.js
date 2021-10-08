@@ -11,13 +11,13 @@ function Game() {
   //Category ID options for the axios request
   const gameCategories = [
     { name: 'books', id: 10 }, 
-    { name: 'generalknowledge', id: 9 }, 
+    { name: 'general knowledge', id: 9 }, 
     { name: 'sports', id: 21 }, 
     { name: 'movies', id: 11 }, 
     { name: 'music', id: 12 }, 
     { name: 'celebrities', id: 26 }, 
     { name: 'history', id: 23 }, 
-    { name: 'scienceandnature', id: 17 }
+    { name: 'science and nature', id: 17 }
   ]
   //Getting the current game category
   const currentGameCategory = gameCategories.filter( category => {
