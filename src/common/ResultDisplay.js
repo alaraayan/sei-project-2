@@ -2,6 +2,7 @@ import { useLocation, useHistory } from 'react-router-dom'
 
 function ResultDisplay() {
   const location = useLocation()
+  window.scrollTo(0, 0)
   //Getting the score + questions and correct answers to display
   const score = location.state.score
   const answers = location.state.answers
