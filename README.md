@@ -54,7 +54,9 @@ Finally we worked individually on improving the UX. I worked on adding a navigat
 ## Challenges
 We had two big challenges with this project. Our chosen API returned the symbols such as & or '' with their HTML name codes which made our quizzes very hard to read and play. This being a Hackhaton and time being an issue, we had to get creative and escaped this issue with `dangerouslySetInnerHTML`:
 
-```<h2 dangerouslySetInnerHTML={ { __html: question.question } }>```
+```javascript 
+<h2 dangerouslySetInnerHTML={ { __html: question.question } }>
+```
 
 ## Wins
 
@@ -65,7 +67,7 @@ For UX purposes we wanted a layout that allowed the user to easily change their 
 The API gave us the answers in two arrays. One had the correct answer for that question and the other had all the incorrect answers. To work around our issue, every time the user clicked on an option we ran a check for two things. First, we checked if the chosen answer was correct and if so pushed it to a third array. If the chosen answer wasn't the correct one, then we checked if the correct answer was already in the third array. This meant that the user originally chose the correct answer but now was changing to an incorrect one. In that case we removed the correct answer for that question from the third array. In the end the length of the third array gave us the final score of the user. 
 
 ###### If the user chose the correct answer, spread and add to the `answers` array:  
-```
+``` javascript
 function handleCorrectAnswer(e) {
     const choice = e.target.innerHTML
 
@@ -76,7 +78,7 @@ function handleCorrectAnswer(e) {
 ```
 
 ###### If the answers was incorrect, run the check to see if it would change the score:
-```
+``` javascript
   function handleWrongAnswer(e) {
     const correctAnswer = e.target.dataset.answer
     if (answers.includes(correctAnswer)) {
@@ -85,7 +87,7 @@ function handleCorrectAnswer(e) {
   }
 ```
 ###### Final score was the length of the `answers` array:  
-```
+``` javascript
   function handleResults(e) {
     e.preventDefault()
     history.push('/results', { score: answers.length })
@@ -112,7 +114,7 @@ After completing this project and knowing a lot more about React after a few mon
 
 * Originally, we had a separate component for all of the quiz categories. This felt against React to us as we were building this but due to time concerns prioritised a working product. I refactor this so now we have a single game component which makes an `axios` request based on the user's choice and displays the correct data.
 
-```
+``` javascript
 const { gameCategory } = useParams()
 
 const gameCategories = [
