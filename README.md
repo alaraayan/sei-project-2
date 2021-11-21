@@ -135,7 +135,7 @@ const gameId = currentGameCategory[0]?.id
 
 * Because we got the answers to questions from the API in two arrays, the was we displayed them always had the correct answer as the first choice. We played around with the UI to make it not obvious to the user, which I am very happy about; but now that I had more knowledge and more than 28 hours I refactored this so they would be displayed randomly. 
 
-```
+``` javascript
 const questionsToDisplay = initialQuestions.map(question => {
   const indexToAddCorrectAnswer = Math.floor(Math.random() * 4)
   const allAnswers = question.incorrect_answers
