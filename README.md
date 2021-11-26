@@ -27,7 +27,7 @@ With my teammate we started talking about what kind of an app we would enjoy bui
 ## Process
 After deciding on an API we worked together to get the rest of the functionality. We decided on what was a priority and what was a stretch goal we could discar if necessary. This was important to me as I struggled with this on my last project. Having a clear to-do list made it easy for us to see what we needed to do together and on which features we could work on our own. Having less than 2 weeks of experience with React, we felt better to go through it together.
 
-We followed along the user as we built this project. First, we built the homepage where you could select and go to a different quiz category, which would then display a different data we were requesting from the API. 
+We followed along with the user as we built this project. First, we built the homepage where you could select and go to a different quiz category, which would then display the different data we were requesting from the API.
 
 Then we worked on the actual quiz and then we built the results page where we passed on data from the game page to display the correct answers for all the questions.
 
@@ -60,7 +60,7 @@ We had two big challenges with this project. Our chosen API returned the symbols
 
 ## Wins
 
-The biggest win I had with this project was determining the result of a quiz. Working with an external API, we didn't get to choose how we were getting the data and had to find creative way to work around issues to get the result we wanted. 
+The biggest win I had with this project was determining the result of a quiz. Working with an external API, we didn't get to choose how we were getting the data and had to find creative ways to work around issues to get the result we wanted. 
 
 For UX purposes we wanted a layout that allowed the user to easily change their answer which made it difficult for us to calculate the result when the form was submitted. 
 
@@ -96,7 +96,7 @@ function handleCorrectAnswer(e) {
 
 ## Key Learnings
 
-The project was invaluable in terms of working as a pair and learn how other people approach code. 
+The project was invaluable in terms of working as a pair and learning how other people approach code.
 
 We also didn't want to use Bulma at first but then decided to switch as we had limited time, which taught us to be adaptable. 
 
@@ -135,7 +135,7 @@ const currentGameCategory = gameCategories.filter( category => {
 const gameId = currentGameCategory[0]?.id
 ```
 
-* Because we got the answers to questions from the API in two arrays, the was we displayed them always had the correct answer as the first choice. We played around with the UI to make it not obvious to the user, which I am very happy about; but now that I had more knowledge and more than 28 hours I refactored this so they would be displayed randomly. 
+* Because we got the answers to questions from the API in two arrays, the way we displayed them always had the correct answer as the first choice. We played around with the UI to make it not obvious to the user, which I am very happy about; but now that I had more knowledge and more than 28 hours I refactored this so they would be displayed randomly.
 
 ``` javascript
 const questionsToDisplay = initialQuestions.map(question => {
