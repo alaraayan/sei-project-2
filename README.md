@@ -20,14 +20,15 @@ With my teammate we started talking about what kind of an app we would enjoy bui
 ## Brief
 * **Consume a public API** – this could be anything but it must make sense for your project.
 * **Have several components** - At least one classical and one functional.
-* **The app can have a router** - with several "pages", this is up to your disgression and if it makes sense for your project.
+* **The app can have a router** - with several "pages", this is up to your discretion and if it makes sense for your project.
 * **Include wireframes** - that you designed before building the app.
 * **Be deployed online** and accessible to the public.
 
-## Process
-After deciding on an API we worked together to get the rest of the functionality. We decided on what was a priority and what was a stretch goal we could discar if necessary. This was important to me as I struggled with this on my last project. Having a clear to-do list made it easy for us to see what we needed to do together and on which features we could work on our own. Having less than 2 weeks of experience with React, we felt better to go through it together.
+## Planning
+After deciding on an API we worked together to get the rest of the functionality. We decided on what was a priority and what was a stretch goal we could discard if necessary. This was important to me as I struggled with this on my last project. Having a clear to-do list made it easy for us to see what we needed to do together and on which features we could work on our own. Having less than 2 weeks of experience with React, we felt better to go through it together.
 
-We followed along with the user as we built this project. First, we built the homepage where you could select and go to a different quiz category, which would then display the different data we were requesting from the API.
+## Process
+We followed along the user journey as we built our project. First, we built the homepage where you could select and go to a different quiz category, which would then display the different data we were requesting from the API.
 
 Then we worked on the actual quiz and then we built the results page where we passed on data from the game page to display the correct answers for all the questions.
 
@@ -112,7 +113,7 @@ I believe I didn't spend enough time on planning with my last project and starte
 
 After completing this project and knowing a lot more about React after a few months of practice, I felt like I could tackle some of the improvements we wanted to make. I kept the entire project the same from the user's point of view and changed two features that we were not the happiest with, but had to prioritise due to time constraints:
 
-* Originally, we had a separate component for all of the quiz categories. This felt against React to us as we were building this but due to time concerns prioritised a working product. I refactor this so now we have a single game component which makes an `axios` request based on the user's choice and displays the correct data.
+* Originally, we had a separate component for all of the quiz categories. This felt against React to us as we were building this but due to time concerns prioritised a working product. I refactored this so now we have a single game component which makes an `axios` request based on the user's choice and displays the correct data.
 
 ``` javascript
 const { gameCategory } = useParams()
